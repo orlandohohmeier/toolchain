@@ -52,6 +52,7 @@ case "$1" in
         login)
             echo "Login..."
 
+            # Adjust file permissions
             chmod 0600 resources/keys/* &&
 
             # SSH into the machine
