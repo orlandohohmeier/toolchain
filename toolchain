@@ -1,0 +1,104 @@
+#!/bin/bash
+
+# Required commands/tools
+REQUIRED_COMMANDS="VBoxManage vagrant"
+
+# Check if all required commands/tools are installed...
+for command in $REQUIRED_COMMANDS
+do
+	type -P $command &>/dev/null  && continue  || { echo "$command command/tool not found. Please make sure that all required commands/tools are properly installed."; exit 1; }
+done
+
+case "$1" in
+		import)
+		    echo "Import..."
+
+            # Create a tmp dir if it not already exits
+	        mkdir -p tmp &&
+
+		    # Remove old machine archive
+            rm -f tmp/toolchain.ova &&
+
+            # Stitch machine parts/chunks together
+            cat machine/toolchain.ova.part-* > tmp/toolchain.ova &&
+
+            # Import machine
+			VBoxManage import tmp/toolchain.ova &&
+
+			# Clear tmp directive
+            rm -f tmp/toolchain.ova
+
+			;;
+        start)
+            echo "Start..."
+
+             # Configure SSH port
+            VBoxManage modifyvm "toolchain" --natpf1 "guestssh,tcp,,2200,,22" &&
+
+             # Start machine in headless mode
+	 		VBoxManage startvm "toolchain" --type headless
+
+            ;;
+        stop)
+            echo "Stop..."
+
+            # Stop machine
+            VBoxManage controlvm "toolchain" poweroff &&
+
+            # Delet ssh port configuration
+            VBoxManage modifyvm "toolchain" --natpf1 delete "guestssh"
+
+            ;;
+        login)
+            echo "Login..."
+
+            # SSH into the machine
+            ssh vagrant@localhost -p 2200 -i resources/keys/vagrant
+
+            ;;
+        motd)
+            echo "Sync motd..."
+
+            # Open an editor and sync the file subsequantly
+            vi resources/motd &&
+            rsync -avz resources/motd -e "ssh -p 2222 -i resources/keys/vagrant" vagrant@localhost:/etc/ --rsync-path="sudo rsync"
+
+            ;;
+        export)
+            echo "Export..."
+
+            # Create a tmp dir if it not already exits
+	        mkdir -p tmp &&
+
+            # Remove old machine archive
+            rm  -f tmp/toolchain.ova &&
+
+            # Remove old vagrant box
+            rm -f toolchain.box &&
+
+            # Remove old machine parts/chunks
+            rm -f machine/toolchain.ova.part-* &&
+
+            # Stop machine
+            VBoxManage controlvm "toolchain" poweroff ;
+
+            # Delet ssh port configuration
+            VBoxManage modifyvm "toolchain" --natpf1 delete "guestssh" ;
+
+            # Export machine
+            VBoxManage export "toolchain" --output tmp/toolchain.ova &&
+
+            # Split machine archvive into ~70mb parts/chunks
+            split -b 70m tmp/toolchain.ova machine/toolchain.ova.part- &&
+
+            # Clean up tmp directory
+            rm  -f tmp/toolchain.ova &&
+
+            # Package vagrant box
+            vagrant package --base "toolchain" --output toolchain.box
+
+            ;;
+        *)
+            echo "Usage: $0 {import|start|stop|login|export|package}"
+            exit 1
+esac
