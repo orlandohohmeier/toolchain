@@ -129,12 +129,12 @@ Please commit your changes and share your updated box with the world!
 * cURL 7.35.0
 * CMake 2.8.12.2
 * VIM 7.4.52
-* Ruby 1.9.3
-* Bundler 1.6.5
+* Ruby 2.1.3
+* Bundler 1.7.0
 * Python 2.7.6
-* NodeJS 0.10.30
-* NPM 1.4.21
-* Bower 1.3.8
+* NodeJS 0.10.32
+* NPM 1.4.28
+* Bower 1.3.12
 * Grunt 0.1.13
 * Gulp 3.8.7
 * Java 1.7.0_65
