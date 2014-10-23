@@ -52,6 +52,8 @@ case "$1" in
         login)
             echo "Login..."
 
+            chmod 0600 resources/keys/* &&
+
             # SSH into the machine
             ssh vagrant@localhost -p 2200 -i resources/keys/vagrant
 
