@@ -88,8 +88,8 @@ case "$1" in
             # Export machine
             VBoxManage export "toolchain" --output tmp/toolchain.ova &&
 
-            # Split machine archvive into ~70mb parts/chunks
-            split -b 70m tmp/toolchain.ova machine/toolchain.ova.part- &&
+            # Split machine archvive into ~40mb parts/chunks
+            split -b 40m tmp/toolchain.ova machine/toolchain.ova.part- &&
 
             # Clean up tmp directory
             rm  -f tmp/toolchain.ova &&

@@ -1,4 +1,7 @@
 .idea
 .DS_Store
+
 *.box
+*.iml
+
 tmp
