@@ -118,7 +118,7 @@ Please commit your changes and share your updated box with the world!
 
 * Ubuntu Server 64-bit
 * 1024 MB RAM
-* 4.00 GB Disk space
+* 20.00 GB Disk space
 * Minimal virtual machine installation
 
 ### Software
