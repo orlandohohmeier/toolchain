@@ -148,8 +148,8 @@ Please commit your changes and share your updated box with the world!
    	
 ## Authors
 
-* Tobias Althoff, @____tobi
-* Orlando Hohmeier, @orlandohohmeier
+* Tobias Althoff, [@____tobi](https://twitter.com/____tobi)
+* Orlando Hohmeier, [@orlandohohmeier](https://twitter.com/orlandohohmeier)
  
 ## License
 
