@@ -25,7 +25,7 @@ Using the Toolchain box is quite easy. All you need is a Vagrantfile and some pa
 
 A Vagrantfile is used to describe the type of machine (Toolchain) required for a project. Use the following command to create a Vagrantfile for your project.
 
-	$ vagrant init toolchain ${TOOLCHAIN_URL}
+	$ vagrant init orlandohohmeier/toolchain
 
 #### Example (minimal Vagrantfile)
 
@@ -36,8 +36,7 @@ A Vagrantfile is used to describe the type of machine (Toolchain) required for a
 	VAGRANTFILE_API_VERSION = "2"
 	Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	  	config.vm.define "toolchain" do |toolchain|
-	  		toolchain.vm.box = "toolchain"
-  			toolchain.vm.box_url = "${TOOLCHAIN_URL}"
+	  		toolchain.vm.box = "orlandohohmeier/toolchain"
 	  	end
 	end
 
