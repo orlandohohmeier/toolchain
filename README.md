@@ -1,5 +1,7 @@
 # Toolchain
 
+This project features a vagrant box with a Ubuntu Server 64-bit minimal virtual machine installation. It comes with a hand selected set of preinstalled software for web development.
+
 ## Requirements
 
 You need the following software to use, configure and update the Toolchain box.
