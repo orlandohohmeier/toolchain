@@ -64,7 +64,7 @@ case "$1" in
 
             # Open an editor and sync the file subsequantly
             vi resources/motd &&
-            rsync -avz resources/motd -e "ssh -p 2222 -i resources/keys/vagrant" vagrant@localhost:/etc/ --rsync-path="sudo rsync"
+            rsync -avz resources/motd -e "ssh -p 2200 -i resources/keys/vagrant" vagrant@localhost:/etc/ --rsync-path="sudo rsync"
 
             ;;
         export)
