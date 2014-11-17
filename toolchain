@@ -102,6 +102,6 @@ case "$1" in
 
             ;;
         *)
-            echo "Usage: $0 {import|start|stop|login|export|package}"
+            echo "Usage: $0 {import|start|stop|login|motd|export}"
             exit 1
 esac
